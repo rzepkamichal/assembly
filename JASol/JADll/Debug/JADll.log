@@ -1,2 +1,5 @@
-﻿     Creating library C:\Users\sysoper\Desktop\dev\assembly\JASol\Debug\JADll.lib and object C:\Users\sysoper\Desktop\dev\assembly\JASol\Debug\JADll.exp
+﻿  Assembling mojadll.asm...
+mojadll.asm(10): warning A6004: procedure argument or local not referenced : hInstDLL
+mojadll.asm(10): warning A6004: procedure argument or local not referenced : reason
+mojadll.asm(10): warning A6004: procedure argument or local not referenced : reserved1
   JADll.vcxproj -> C:\Users\sysoper\Desktop\dev\assembly\JASol\Debug\JADll.dll
