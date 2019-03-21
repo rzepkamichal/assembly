@@ -1,66 +1,84 @@
 .386 
 .MODEL FLAT, STDCALL
 OPTION CASEMAP:NONE
-INCLUDE C:\masm32\include\windows.inc
+;INCLUDE C:\masm32\include\windows.inc
+.NOLIST
+.NOCREF
+.LIST
+
+
+.DATA
+DataString DB 'AGIKSZJ', 0FFH ; definicja ciagu znakow
+LocalString DB 0C3H, 'GJIKSZJ', 0FFH ; definicja ciagu znakow 
+
 .CODE
+;DllEntry PROC hInstDLL:HINSTANCE, reason:DWORD, reserved1:DWORD
+;mov eax,TRUE 
+;ret
+;DllEntry ENDP
 
-DllEntry PROC hInstDLL:HINSTANCE, reason:DWORD, reserved1:DWORD
-mov eax,TRUE 
-ret
-DllEntry ENDP
+;**************************************************************************** 
+;* Procedura FindChar_1 wyszukiwania znaku 'J' w ciagu 'DataString' * 
+;* * 
+;* Bezposrednia adresacja indeksowa * 
+;* Parametry wejsciowe: * 
+;* AH - szukany znak 'J' * 
+;* Parametry wyjsciowe: * 
+;* EAX - BOOL TRUE Found, FALSE not found * 
+;* * 
+;**************************************************************************** 
+FindChar_1 PROC 
+    MOV ESI, OFFSET DataString	; zaladuj offset zmiennej 'DataString' do rej. ESI 
+    MOV AH, 'J'					; zaladuj kod litery 'J' do rej. AH 
+Check_End: 
+    CMP BYTE PTR [ESI], 0FFH	; czy koniec lancucha (znak specjalny FF)? 
+    JE Not_Find					; znaleziono znak konca (wartownik) 
+    CMP AH, [ESI]			    ; porownaj znak z elementem lancucha 'DataString' 
+    JE Got_Equal				; znaleziono znak! 
+    ADD ESI, 1					; inkrementuj offset
+    JMP Check_End				; petla wyszukiwania 
+Got_Equal: 
+    MOV DL, [ESI]				; zaladuj znaleziony znak do DL 
+    JMP Done 
+Not_Find: 
+    MOV EAX,0					; nie znaleziono znaku 
+    RET							; powrot z procedury 
+Done: 
+    MOV EAX,1					; znaleziono znak 
+    RET							; powrot z procedury 
+FindChar_1 ENDP					; koniec FindChar_1 
 
-MyProc1 proc x: DWORD, y: DWORD
-xor eax,eax 
-mov eax,x 
-mov ecx,y 
-ror ecx,1 
-shld eax,ecx,2 
-jnc ET1 
-mul y 
-ret 
-ET1:
-Mul x 
-Neg y 
-ret
-MyProc1 endp
 
-MyProc2 proc
+;**************************************************************************** 
+;* Procedura FindChar_2 wyszukiwania znaku 'J' w ciagu 'LocalString' * 
+;* * 
+;* Bezposrednia adresacja indeksowa * 
+;* Parametry wejsciowe: * 
+;*	AH - szukany znak 'J' * 
+;* Parametry wyjsciowe: * 
+;*	EAX - BOOL TRUE Found, FALSE not found * 
+;* * 
+;**************************************************************************** 
+FindChar_2 PROC 
+    MOV ESI, OFFSET LocalString ; zaladuj offset zmiennej 'LocalString' do rej. ESI 
+    MOV AH, 'J'					; zaladuj kod litery 'J' do rej. AH 
+Check_End: 
+    CMP BYTE PTR [ESI], 0FFH	; czy koniec lancucha (znak specjalny FF)? 
+    JE Not_Find				; znaleziono znak konca (wartownik) 
+    CMP AH, [ESI]			; porownaj znak z elementem lancucha 'LocalString' 
+    JE Got_Equal				; znaleziono znak! 
+    ADD ESI, 1					; inkrementuj offset 
+    JMP Check_End				; petla wyszukiwania 
+Got_Equal: 
+    MOV DL, [ESI]				; zaladuj znaleziony znak do DL 
+    JMP Done 
+Not_Find: 
+    MOV EAX,0					; nie znaleziono znaku 
+    RET							; powrot z procedury 
+Done: 
+    MOV EAX,1					; znaleziono znak 
+    RET							; powrot z procedury 
+FindChar_2 ENDP					; koniec FindChar_2
 
-; wykrycie PL = 0->1 
-; wynikiem poni¿szej operacji arytmetycznej jest liczba ujemna
-; (st¹d ustawiana jest wartoœæ PL = 1) 
-mov eax, 0
-add eax, -20
-
-; wykrycie PE = 0->1 
-; wynik poni¿szej operacji - liczba 3 - posiada w reprezentacji binarnej
-; parzyst¹ liczbê "jedynek" w najm³odszym bajcie (w wyniku czego PE = 1)
-mov eax, 2
-add eax, 1
-
-; wykrycie ZR = 0->1 
-; wynikiem poni¿szej operacji jest liczba 0 (st¹d ZR = 1)
-sub eax, eax
-
-; wykrycie CY = 0->1 i AC = 0->1
-; argumenty poni¿szej operacji wybrano tak, aby:
-; - wyst¹pi³o przeniesienie z trzeciej pozycji licz¹c od najm³odszego bitu (wówczas AC = 1)
-; - wyst¹pi³o przeniesienie z pozycji najbardziej znacz¹cej (wówczas CY = 1)
-mov ax, 0100000000000001b
-add ax, 1011111111111111b
-
-; wykrycie OV = 0->1
-; argumenty poni¿szej dobrano tak,
-; aby w wyniku dodawania liczb ze znakiem wyst¹pi³o przepe³nienie (wówczas OV = 1)
-mov eax, -2147483648
-add eax, -1
-
-; wykrycie UP = 0->1 oraz UP = 1->0
-; wykorzystano funkcje ustawiaj¹c¹ i resetuj¹c¹ flagê	
-std
-cld
-
-ret
-MyProc2 endp
 
 end

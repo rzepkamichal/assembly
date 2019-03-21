@@ -1,2 +1,4 @@
 ﻿  JAApp.cpp
-  JAApp.vcxproj -> C:\Users\sysoper\Desktop\dev\assembly\JASol\Debug\JAApp.exe
+c:\users\m_user\desktop\dev\assembly\jasol\jaapp\jaapp.cpp(11): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+c:\users\m_user\desktop\dev\assembly\jasol\jaapp\jaapp.cpp(11): warning C4309: 'initializing': truncation of constant value
+  JAApp.vcxproj -> C:\Users\M_User\Desktop\dev\assembly\JASol\Debug\JAApp.exe
