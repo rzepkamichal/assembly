@@ -1,3 +1,0 @@
-LIBRARY JADll
-EXPORTS FindChar_1
-EXPORTS FindChar_2
