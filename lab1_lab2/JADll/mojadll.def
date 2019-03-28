@@ -1,3 +1,10 @@
 LIBRARY JADll
 EXPORTS FindChar_1
 EXPORTS FindChar_2
+EXPORTS FindChar_3
+EXPORTS FindChar_4
+EXPORTS FindChar_5
+EXPORTS FindChar_6
+EXPORTS ReadTime_1
+EXPORTS MyProcedure
+EXPORTS ReadTime_2
