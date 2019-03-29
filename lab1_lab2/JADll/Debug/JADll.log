@@ -1,2 +1,8 @@
 ﻿  Assembling mojadll.asm...
-  JADll.vcxproj -> C:\Users\M_User\Desktop\dev\assembly\lab1_lab2\Debug\JADll.dll
+  stdafx.cpp
+  dllmain.cpp
+  JADll.cpp
+  Generating Code...
+  LINK : C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JADll.dll not found or not built by the last incremental link; performing full link
+     Creating library C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JADll.lib and object C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JADll.exp
+  JADll.vcxproj -> C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JADll.dll

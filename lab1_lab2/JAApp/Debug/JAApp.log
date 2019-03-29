@@ -1,4 +1,6 @@
-﻿  JAApp.cpp
-c:\users\m_user\desktop\dev\assembly\lab1_lab2\jaapp\jaapp.cpp(11): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
-c:\users\m_user\desktop\dev\assembly\lab1_lab2\jaapp\jaapp.cpp(11): warning C4309: 'initializing': truncation of constant value
-  JAApp.vcxproj -> C:\Users\M_User\Desktop\dev\assembly\lab1_lab2\Debug\JAApp.exe
+﻿  pch.cpp
+  JAApp.cpp
+c:\users\sysoper\desktop\dev\assembly\lab1_lab2\jaapp\jaapp.cpp(11): warning C4838: conversion from 'int' to 'char' requires a narrowing conversion
+c:\users\sysoper\desktop\dev\assembly\lab1_lab2\jaapp\jaapp.cpp(11): warning C4309: 'initializing': truncation of constant value
+  LINK : C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JAApp.exe not found or not built by the last incremental link; performing full link
+  JAApp.vcxproj -> C:\Users\sysoper\Desktop\dev\assembly\lab1_lab2\Debug\JAApp.exe

@@ -206,22 +206,24 @@ FindChar_6 ENDP					; koniec FindChar_6
 
 
 MyProcedure PROC
-	mov EBX, OFFSET DataString
-	mov AX, WORD PTR [EBX+0]
-	cmp AL, 'J'
-	je found
-	cmp AH, 'J'
-	je found
-	mov AX, WORD PTR [EBX+2]
-	je found
-	cmp AH, 'J'
-	je found
-	mov AX, WORD PTR [EBX+4]
-	je found
-	cmp AH, 'J'
-	je found
-	mov AL, BYTE PTR [EBX+6]
-	cmp AL, 'J'
+	mov EBX, OFFSET DataString	; zaladuj offset zmiennej 'DataString' do rej. ESI
+	mov AX, WORD PTR [ESI+0]	; zaladuj dwa elementy lancucha 'DataString' do rej. AX
+	cmp AL, 'J'					; porownaj znak z elementem lancucha 'DataString'	
+	je found					; znaleziono znak 
+	cmp AH, 'J'					; porownaj znak z elementem lancucha 'DataString' 
+	je found					; znaleziono znak
+	mov AX, WORD PTR [ESI+2]	; zaladuj dwa elementy lancucha 'DataString' do rej. AX	
+	cmp AL, 'J'					; porownaj znak z elementem lancucha 'DataString' 
+	je found					; znaleziono znak
+	cmp AH, 'J'					; porownaj znak z elementem lancucha 'DataString'
+	je found					; znaleziono znak
+	mov AX, WORD PTR [ESI+4]	; zaladuj dwa elementy lancucha 'DataString' do rej. AX
+	cmp AL, 'J'					; porownaj znak z elementem lancucha 'DataString'
+	je found					; znaleziono znak 
+	cmp AH, 'J'					; porownaj znak z elementem lancucha 'DataString' 
+	je found					; znaleziono znak
+	mov AL, BYTE PTR [ESI+6]	; zaladuj ostatni element lancucha 'DataString' do rej. AL
+	cmp AL, 'J'					; porownaj znak z elementem lancucha 'DataString' 
 	je found
 	not_found:
 		mov EAX, 0
